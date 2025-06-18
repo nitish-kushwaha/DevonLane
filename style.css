@@ -1,0 +1,950 @@
+/* --- बेसिक और वेरिएबल सेटअप --- */
+:root {
+    --bg-dark: #0D0B14;
+    --bg-light: #F5F5F5;
+    --text-dark: #FFFFFF;
+    --text-light: #1E1E1E;
+    --text-secondary-dark: #a0a0a0;
+    --text-secondary-light: #555555;
+    --purple: #8E44AD;
+    --pink: #D946EF;
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* --- बेसिक स्टाइल --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
+}
+
+body.light-mode {
+    --bg-dark: var(--bg-light);
+    --text-dark: var(--text-light);
+    --text-secondary-dark: var(--text-secondary-light);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- बैकग्राउंड कोड --- */
+.code-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.05;
+    color: #888;
+    font-family: monospace;
+    font-size: 14px;
+    overflow: hidden;
+    transform: rotate(-10deg) scale(1.2);
+    user-select: none;
+}
+body.light-mode .code-bg {
+    opacity: 0.1;
+}
+
+/* --- हेडर --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+.nav-link {
+    color: var(--text-secondary-dark);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-dark);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Day/Night टॉगल बटन */
+.theme-toggle {
+    background-color: #2e2e2e;
+    border-radius: 20px;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    position: relative;
+}
+.theme-toggle i {
+    padding: 3px;
+    font-size: 1rem;
+    color: #999;
+}
+.theme-toggle .fa-moon { color: #fff; }
+
+.light-mode .theme-toggle .fa-sun { color: #fff; }
+.light-mode .theme-toggle .fa-moon { color: #999; }
+
+
+.btn-hire {
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-hire:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(142, 68, 173, 0.4);
+}
+
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+/* --- मुख्य कंटेंट --- */
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: calc(100vh - 90px);
+    gap: 40px;
+    background-image: radial-gradient(circle at 80% 30%, rgba(142, 68, 173, 0.3) 0%, transparent 40%);
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 6.5rem;
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.description {
+    color: var(--text-secondary-dark);
+    font-size: 1.1rem;
+    max-width: 400px;
+}
+
+.hero-image-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image-container img {
+    width: 420px; /* चौड़ाई और ऊँचाई बराबर रखें */
+    height: 420px;
+    border-radius: 50%; /* यह लाइन इमेज को गोल बनाती है */
+    object-fit: cover;  /* यह इमेज को बिना खींचे ठीक से फिट करता है */
+    z-index: 2;
+    border: 5px solid var(--bg-dark); /* सर्कल के चारों ओर एक बॉर्डर */
+    box-shadow: 0 0 25px rgba(142, 68, 173, 0.3); /* हल्का ग्लो */
+
+
+}
+
+.download-btn {
+    position: absolute;
+    /* गोल इमेज पर बटन की पोजीशन एडजस्ट की गई है */
+    bottom: 25px; 
+    right: 25px;
+    width: 90px;
+    height: 90px;
+    background-color: var(--purple);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    z-index: 3;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 4px solid var(--bg-dark);
+}
+
+/* मोबाइल के लिए भी इमेज को गोल रखने का स्टाइल */
+@media (max-width: 576px) {
+    .hero-image-container img {
+        width: 280px; /* मोबाइल स्क्रीन पर साइज़ */
+        height: 280px;
+    }
+}
+
+.download-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--purple);
+}
+
+.download-btn i {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+.download-btn span {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* --- सोशल साइडबार --- */
+.social-sidebar {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 10px;
+    background-color: rgba(40, 40, 40, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 50px;
+    z-index: 5;
+}
+
+.social-sidebar a {
+    color: var(--text-secondary-dark);
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-sidebar a:hover {
+    color: #fff;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .main-content {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 40px;
+    }
+    .title {
+        font-size: 5rem;
+    }
+    .description {
+        margin: 0 auto;
+        max-width: 500px;
+    }
+    .download-btn {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -20px;
+    }
+    .hamburger {
+        display: block;
+        z-index: 1001;
+    }
+    .header-right {
+        display: none;
+    }
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--bg-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: left 0.5s ease;
+        z-index: 1000;
+    }
+    .navbar.active {
+        left: 0;
+    }
+    .nav-list {
+        flex-direction: column;
+        font-size: 2rem;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .title {
+        font-size: 3.5rem;
+    }
+    .social-sidebar {
+        display: none;
+    }
+    .hero-image-container img {
+        width: 100%;
+    }
+}
+
+/* =============== SERVICES SECTION STYLE =============== */
+.services-section {
+    padding: 80px 0;
+    background-color: #100e1a; /* हीरो सेक्शन से थोड़ा अलग बैकग्राउंड */
+}
+
+/* लाइट मोड में सर्विसेज सेक्शन का बैकग्राउंड */
+body.light-mode .services-section {
+    background-color: #fdfdfd;
+}
+
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+/* टाइटल के नीचे एक लाइन */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+    border-radius: 2px;
+}
+
+.services-grid {
+    display: grid;
+    /* 3 कार्ड एक लाइन में, और मोबाइल पर अपने आप 1 लाइन में */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: #1a1822;
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #2e2e2e;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* लाइट मोड में कार्ड का स्टाइल */
+body.light-mode .service-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--purple);
+    box-shadow: 0 10px 30px rgba(142, 68, 173, 0.2);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    /* आइकॉन का रंग */
+    color: var(--purple);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.card-description {
+    color: var(--text-secondary-dark);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* =============== SKILLS SECTION STYLE =============== */
+.skills-section {
+    padding: 80px 0;
+    /* बैकग्राउंड में एक हल्का ग्रेडिएंट */
+    background: linear-gradient(180deg, #100e1a 0%, #0D0B14 100%);
+}
+
+.skills-wrapper {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* हर कैटेगरी के बीच में गैप */
+}
+
+.skill-category h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    border-left: 4px solid var(--purple);
+    padding-left: 15px;
+}
+
+.skills-grid {
+    display: grid;
+    /* एक लाइन में 5-6 आइटम, और मोबाइल पर अपने आप एडजस्ट */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+}
+
+.skill-item {
+    background-color: #1a1822;
+    border: 1px solid #2e2e2e;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    /* --skill-color नाम का वेरिएबल HTML से आ रहा है */
+}
+
+/* लाइट मोड में स्किल आइटम का स्टाइल */
+body.light-mode .skill-item {
+    background-color: #ffffff;
+    border-color: #e0e0e0;
+}
+
+.skill-item i {
+    font-size: 3rem; /* आइकॉन का साइज़ */
+    color: var(--skill-color); /* हर आइकॉन का अपना रंग */
+    transition: transform 0.3s ease;
+}
+
+.skill-item span {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* होवर करने पर शानदार ग्लो इफ़ेक्ट */
+.skill-item:hover {
+    transform: translateY(-8px);
+    border-color: var(--skill-color);
+    box-shadow: 0 0 20px -5px var(--skill-color);
+}
+
+.skill-item:hover i {
+    transform: scale(1.1);
+}
+
+/* ================ LIGHT MODE FIXES ================ */
+
+/* --- Services Section Light Mode --- */
+body.light-mode .services-section {
+    background-color: #f8f9fa; /* हल्का ग्रे बैकग्राउंड */
+}
+
+body.light-mode .service-card {
+    background-color: #ffffff;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Skills Section Light Mode --- */
+body.light-mode .skills-section {
+    /* लाइट मोड में बैकग्राउंड */
+    background: #ffffff;
+}
+
+body.light-mode .skill-category h3 {
+    /* टाइटल का रंग */
+    color: #212529;
+}
+
+body.light-mode .skill-item {
+    background-color: #f8f9fa; /* कार्ड का बैकग्राउंड */
+    border-color: #dee2e6;     /* कार्ड का बॉर्डर */
+    box-shadow: none;          /* डिफ़ॉल्ट शैडो हटा दें */
+}
+
+body.light-mode .skill-item span {
+    color: #495057; /* टेक्स्ट का रंग */
+}
+
+/* होवर इफ़ेक्ट लाइट मोड के लिए */
+body.light-mode .skill-item:hover {
+    box-shadow: 0 0 20px -5px var(--skill-color); /* ग्लो इफ़ेक्ट */
+}
+
+
+/* सबसे ज़रूरी: GitHub आइकॉन का रंग लाइट मोड में बदलना */
+body.light-mode .skill-item[style*="#181717"] i {
+    color: #333 !important; /* काले आइकॉन का रंग बदलें ताकि वो दिखे */
+}
+
+/* =============== PROJECTS SECTION STYLE =============== */
+.projects-section {
+    padding: 80px 0;
+    background-color: #0D0B14; /* डार्क बैकग्राउंड */
+}
+
+/* लाइट मोड में प्रोजेक्ट्स सेक्शन */
+body.light-mode .projects-section {
+    background-color: #ffffff;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px;
+}
+
+.project-card {
+    background-color: #1a1822;
+    border-radius: 15px;
+    overflow: hidden; /* इमेज को कार्ड के अंदर रखने के लिए */
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #2e2e2e;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* लाइट मोड में प्रोजेक्ट कार्ड */
+body.light-mode .project-card {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.project-image {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* इमेज को बिना खींचे फिट करें */
+    object-position: top center; /* हमेशा इमेज का ऊपरी हिस्सा दिखाएं */
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05); /* होवर पर इमेज ज़ूम होगी */
+}
+
+.project-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* कंटेंट को पूरी जगह लेने दें */
+}
+
+.project-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.project-description {
+    color: var(--text-secondary-dark);
+    font-size: 1rem;
+    margin-bottom: 20px;
+    flex-grow: 1; /* डिस्क्रिप्शन को उपलब्ध जगह लेने दें */
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.project-tags span {
+    background-color: rgba(142, 68, 173, 0.15);
+    color: var(--purple);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* लाइट मोड में टैग्स */
+body.light-mode .project-tags span {
+    background-color: #e8d9f2;
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+    margin-top: auto; /* लिंक्स को हमेशा नीचे रखें */
+}
+
+.project-btn {
+    color: var(--text-dark);
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.project-btn:hover {
+    background-color: var(--purple);
+    color: #fff;
+    border-color: var(--purple);
+}
+
+/* लाइट मोड में लिंक बटन */
+body.light-mode .project-btn {
+    border-color: #ced4da;
+}
+
+body.light-mode .project-btn:hover {
+     color: #fff;
+}
+
+.project-btn i {
+    margin-left: 5px;
+}
+
+/* =============== VIEW ALL PROJECTS BUTTON STYLE =============== */
+.view-all-container {
+    text-align: center;
+    margin-top: 60px; /* प्रोजेक्ट ग्रिड से दूरी */
+}
+
+.btn-view-all {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    border: 2px solid var(--purple);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.btn-view-all:hover {
+    background-color: var(--purple);
+    color: #fff;
+    box-shadow: 0 5px 20px rgba(142, 68, 173, 0.4);
+    transform: translateY(-3px);
+}
+
+/* लाइट मोड में बटन का स्टाइल */
+body.light-mode .btn-view-all {
+     color: var(--purple);
+}
+
+body.light-mode .btn-view-all:hover {
+     color: #fff;
+}
+
+/* =============== CONTACT SECTION STYLE =============== */
+.contact-section {
+    padding: 80px 0;
+    background-color: #100e1a;
+}
+
+body.light-mode .contact-section {
+    background-color: #f8f9fa;
+}
+
+.contact-wrapper {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* दो कॉलम का लेआउट */
+    gap: 50px;
+    background-color: #1a1822;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #2e2e2e;
+}
+
+body.light-mode .contact-wrapper {
+    background-color: #ffffff;
+    border-color: #e9ecef;
+}
+
+.contact-info h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    color: var(--text-secondary-dark);
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-item i {
+    font-size: 1.5rem;
+    color: var(--purple);
+}
+
+.info-item a, .info-item span {
+    font-size: 1rem;
+    color: var(--text-secondary-dark);
+    transition: color 0.3s ease;
+}
+
+.info-item a:hover {
+    color: var(--purple);
+}
+
+.contact-socials {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.contact-socials a {
+    font-size: 1.5rem;
+    color: var(--text-secondary-dark);
+    transition: color 0.3s, transform 0.3s;
+}
+
+.contact-socials a:hover {
+    color: var(--purple);
+    transform: translateY(-3px);
+}
+
+.contact-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-group.half-width {
+    width: calc(50% - 10px); /* दो फ़ील्ड को एक लाइन में रखने के लिए */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    background-color: #0D0B14;
+    border: 2px solid #2e2e2e;
+    border-radius: 10px;
+    color: var(--text-dark);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+body.light-mode .contact-form input,
+body.light-mode .contact-form textarea {
+    background-color: #f8f9fa;
+    border-color: #dee2e6;
+}
+
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #888;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--purple);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    background: linear-gradient(90deg, var(--pink), var(--purple));
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(142, 68, 173, 0.4);
+}
+
+/* मोबाइल के लिए रेस्पॉन्सिव */
+@media (max-width: 992px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr; /* एक कॉलम में बदलें */
+    }
+}
+
+@media (max-width: 576px) {
+    .form-group.half-width {
+        width: 100%; /* छोटे मोबाइल पर फ़ील्ड को पूरी चौड़ाई दें */
+    }
+    .contact-wrapper {
+        padding: 25px;
+    }
+}
+
+
+/* =============== FOOTER SECTION STYLE =============== */
+.footer {
+    background-color: #0a0810;
+    padding-top: 60px;
+    color: #a0a0a0;
+}
+
+body.light-mode .footer {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.logo-footer {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+body.light-mode .logo-footer {
+     color: var(--text-light);
+}
+
+.footer-about p {
+    line-height: 1.7;
+}
+
+.footer-links h3, .footer-social h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+body.light-mode .footer-links h3, 
+body.light-mode .footer-social h3 {
+     color: var(--text-light);
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li {
+    margin-bottom: 12px;
+}
+
+.footer-links ul a {
+    color: #a0a0a0;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+body.light-mode .footer-links ul a {
+     color: #495057;
+}
+
+.footer-links ul a:hover {
+    color: var(--purple);
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #a0a0a0;
+    font-size: 1.5rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+body.light-mode .social-icons a {
+     color: #495057;
+}
+
+.social-icons a:hover {
+    color: var(--purple);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    padding: 20px 0;
+    text-align: center;
+    border-top: 1px solid #2e2e2e;
+}
+
+body.light-mode .footer-bottom {
+    border-top-color: #ced4da;
+}
+
+
